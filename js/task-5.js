@@ -5,42 +5,43 @@ const indiaDelivery = 80;
 const jamaicaDelivery = 120;
 
 let country = prompt("введите страну для доставки");
-let lowerCaseCounty = country.toLowerCase();
+let lowerCaseCounty;
 let priceForDelivery;
 let message;
 let result;
 
-switch (lowerCaseCounty) {
-  case "китай":
-    priceForDelivery = chinaDelivery;
-    alert(message);
-    break;
+if (country === null) {
+  alert("Отменено пользователем!");
+} else {
+  lowerCaseCounty = country.toLowerCase();
+  switch (lowerCaseCounty) {
+    case "китай":
+      priceForDelivery = chinaDelivery;
+      break;
 
-  case "чили":
-    priceForDelivery = chileDelivery;
-    alert(message);
-    break;
+    case "чили":
+      priceForDelivery = chileDelivery;
+      break;
 
-  case "австралия":
-    priceForDelivery = australiaDelivery;
-    alert(message);
-    break;
+    case "австралия":
+      priceForDelivery = australiaDelivery;
+      break;
 
-  case "индия":
-    priceForDelivery = indiaDelivery;
-    alert(message);
-    break;
+    case "индия":
+      priceForDelivery = indiaDelivery;
+      break;
 
-  case "ямайка":
-    priceForDelivery = jamaicaDelivery;
-    alert(message);
-    break;
+    case "ямайка":
+      priceForDelivery = jamaicaDelivery;
+      break;
 
-  default:
-    result = `Мы не осуществляем доставку в эту страну`;
-    alert(result);
+    default:
+      priceForDelivery = "not available";
+  }
+
+  message =
+    priceForDelivery !== "not available"
+      ? `Доставка в ${country} будет стоить ${priceForDelivery} кредитов`
+      : "Мы не доставляем товар в вашу страну";
+  alert(message);
 }
-
-message = `Доставка в ${country} будет стоить ${priceForDelivery} кредитов`;
-
-// прописал алерт в каждом кейсе, потому-что вылазит дважды при отмене, елси прописывать его единожды в конце
